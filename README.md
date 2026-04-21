@@ -1,6 +1,8 @@
 Auction Invoice PDF Reader
 
-This project is a Python-based script designed to read auction invoices from PDF files and process them into structured data for further analysis. It supports multiple auction companies including Copart, IAAI, and Manheim. The extracted data is organized into a CSV file and can be uploaded to Google Sheets for easy access and analysis.
+This project is a Python-based script designed to read auction invoices from PDF files and process them into structured data for further analysis. 
+It supports multiple auction companies including Copart, IAAI, and Manheim. The extracted data is organized into a CSV file and can be uploaded
+to Google Sheets for easy access and analysis.
 
 Key Features:
 1)Extracts invoice data from PDF files using pdfplumber.
