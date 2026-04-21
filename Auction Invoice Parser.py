@@ -23,7 +23,6 @@ sh = gc.open('Auction Invoices').worksheet('Data_Read_By_PY')
 # CONFIG
 # ==========================
 
-FOLDER_PATH = r"I:\My Drive\GlobalAutoBase-ShareFolder\Auction Invoices For Read [PDF]"
 FOLDER_PATH = r"C:\Users\User\Desktop\Auction"
 OUTPUT_DATA = "auction_final_invoice_reader.csv"
 ERROR_LOG = "auction_errors_invoices.csv"
@@ -151,6 +150,14 @@ def copart_parser(text, company):
     )["Amount"].sum()
 
     df["Full Amount"] = df.groupby("VIN")["Amount"].transform("sum")
+
+    net_due = re.search(r"Net\sDue\s*\(\s*USD\s*\)\s*[:$]?\s*([0-9,]+\.?[0-9]*)", text)
+    if net_due:
+        net_due_amount = float(net_due.group(1).replace(",", ""))
+
+    if net_due_amount > 0:
+        raise ValueError(f"Unexpected positive Net Due amount: {net_due_amount}")
+
     return df
 
 # ==========================
@@ -362,6 +369,9 @@ for idx, filename in enumerate(pdf_files, 1):
 
             # Merge all text into a single string
             full_text = "\n".join(all_text)
+
+            #print(full_text)
+            #print("NO TEXT")
 
             company = detect_company(full_text)
             if not company:
