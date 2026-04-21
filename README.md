@@ -5,10 +5,15 @@ This project is a Python-based script designed to read auction invoices from PDF
 Key Features:
 
 1)Extracts invoice data from PDF files using pdfplumber.
+
 2)Supports multiple auction companies: Copart, IAAI, and Manheim.
+
 3)Data includes fields such as invoice date, sale date, VIN, charge type, and amount.
+
 4)Converts text from PDF into a structured DataFrame using regular expressions.
+
 5)Outputs processed data to a CSV file and logs errors or issues.
+
 6)Google Sheets integration to automatically update the extracted data.
 
 Technologies Used:
